@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Background video (fixed, full-screen) -->
+  <video id="bgVideo" class="bg-video" loop muted playsinline>
+    <source src="/video/galaxy.mp4" type="video/mp4" />
+    Your browser does not support the background video.
+  </video>
+
+  <!-- First-visit popup -->
+  <div id="bgChoiceModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <h2 id="modalTitle">Play animated background?</h2>
+      <div class="modal-actions">
+        <button id="bgYes" class="btn">Yes</button>
+        <button id="bgNo" class="btn btn-outline">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="site-header">
+    <nav class="navbar">
+      <a class="brand" href="#">MyPortfolio</a>
+
+      <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul id="navMenu" class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <!-- About -->
+    <section id="about" class="section about fade-up">
+      <div class="about-inner">
+        <div class="photo">
+          <!-- Replace with your image -->
+          <img src="images/miles.png" alt="My photo" />
+        </div>
+        <div class="intro">
+          <h1>Hi, I'm Bhavesh Bansod</h1>
+          <p class="lead">
+            I build clean web experiences and work with AI/ML projects. I like simple, readable code and polished UI.
+          </p>
+          <div class="cta">
+            <a class="btn" href="/resume.pdf" download>Download Resume</a>
+            <a class="btn btn-icon" href="https://github.com/Innovasyss" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-icon" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section skills fade-up">
+      <h2>Skills</h2>
+      <div class="skill-grid">
+        <div class="skill-col">
+          <h3>Core</h3>
+          <ul>
+            <li>Python</li>
+            <li>Data Structures</li>
+            <li>Algorithms</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>AI / ML</h3>
+          <ul>
+            <li>PyTorch / TensorFlow</li>
+            <li>Computer Vision</li>
+            <li>Model Deployment</li>
+          </ul>
+        </div>
+        <div class="skill-col">
+          <h3>Web / Tools</h3>
+          <ul>
+            <li>HTML, CSS, JS</li>
+            <li>React (optional)</li>
+            <li>Git, Docker</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card fade-up">
+          <div class="project-thumb">
+            <div class="placeholder-img">Image</div>
+          </div>
+          <div class="project-body">
+            <h3>Project One</h3>
+            <p class="tags">#vision #python</p>
+            <p class="desc">Short description explaining the project's goal and stack.</p>
+            <a class="btn btn-small" href="project1.html">View More</a>
+          </div>
+        </article>
+
+        <article class="project-card fade-up">
+          <div class="project-thumb">
+            <div class="placeholder-img">Image</div>
+          </div>
+          <div class="project-body">
+            <h3>Project Two</h3>
+            <p class="tags">#web #ui</p>
+            <p class="desc">Short description explaining the project's goal and stack.</p>
+            <a class="btn btn-small" href="project2.html">View More</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><strong>Email:</strong> <a href="mailto:bhaveshbansod71@gmail.com">bhaveshbansod71@gmail.com</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/bhavesh-bansod/" target="_blank" rel="noopener">bhavesh-bansod</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/Innovasyss" target="_blank" rel="noopener">Innovasyss</a></p>
+        </div>
+
+        <form class="contact-form" action="mailto:bhaveshbansod71@gmail.com" method="GET">
+          <label for="message">Message</label>
+          <textarea id="message" name="body" rows="6" placeholder="Write your message..."></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Your Name — Built with care.</p>
+  </footer>
+
+  <!-- Minimal JS inlined as requested -->
+  <script>
+    // Elements
+    const bgVideo = document.getElementById('bgVideo');
+    const modal = document.getElementById('bgChoiceModal');
+    const btnYes = document.getElementById('bgYes');
+    const btnNo = document.getElementById('bgNo');
+    const navMenu = document.getElementById('navMenu');
+    const hamburger = document.getElementById('hamburger');
+    const yearEl = document.getElementById('year');
+
+    yearEl.textContent = new Date().getFullYear();
+
+    // Utility: show/hide modal
+    function showModal() {
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('open');
+    }
+    function hideModal() {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.classList.remove('open');
+    }
+
+    // Load saved choice or prompt
+    const saved = localStorage.getItem('bgChoice'); // "yes" / "no" / null
+    if (saved === 'yes') {
+      // play background (ensure muted)
+      bgVideo.muted = true;
+      bgVideo.play().catch(() => { /* autoplay prevented */ });
+    } else if (saved === 'no') {
+      bgVideo.pause();
+    } else {
+      // first visit -> show modal
+      // Wait a tick to ensure modal shows after page renders
+      setTimeout(showModal, 250);
+    }
+
+    // Modal button handlers
+    btnYes.addEventListener('click', () => {
+      localStorage.setItem('bgChoice', 'yes');
+      hideModal();
+      bgVideo.muted = true;
+      bgVideo.play().catch(() => { /* autoplay prevented */ });
+    });
+
+    btnNo.addEventListener('click', () => {
+      localStorage.setItem('bgChoice', 'no');
+      hideModal();
+      bgVideo.pause();
+    });
+
+    // Hamburger toggle
+    hamburger.addEventListener('click', () => {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      navMenu.classList.toggle('open');
+    });
+
+    // Close mobile nav when link clicked
+    navMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (navMenu.classList.contains('open')) {
+          navMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Accessibility: close modal with Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) {
+        hideModal();
+        // If no saved choice, default to no
+        if (!localStorage.getItem('bgChoice')) {
+          localStorage.setItem('bgChoice', 'no');
+          bgVideo.pause();
+        }
+      }
+    });
+
+    
+  </script>
+  <script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, {
+    threshold: 0.15
+  });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

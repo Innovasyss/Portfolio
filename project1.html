@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project One</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header class="site-header" style="position:static;backdrop-filter:none;">
+    <nav class="navbar" style="max-width:1100px;margin:0 auto;">
+      <a class="brand" href="index.html">← Back to Home</a>
+    </nav>
+  </header>
+
+  <main style="max-width:900px;margin:60px auto;padding:1rem;">
+    <h1>Project One</h1>
+    <p>This is a placeholder project page. Replace this with real content about Project One.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px;">
+      <div style="height:180px;border-radius:8px;background:linear-gradient(135deg,#1f1f2b,#16161a);display:flex;align-items:center;justify-content:center;color:#fff">Image 1</div>
+      <div style="height:180px;border-radius:8px;background:linear-gradient(135deg,#23212b,#111214);display:flex;align-items:center;justify-content:center;color:#fff">Image 2</div>
+      <div style="height:180px;border-radius:8px;background:linear-gradient(135deg,#1a2130,#0f1013);display:flex;align-items:center;justify-content:center;color:#fff">Image 3</div>
+    </div>
+
+    <section style="margin-top:18px;">
+      <h2>Description</h2>
+      <p>Write a detailed description of the project here — goals, stack, challenges, results, and links.</p>
+    </section>
+
+    <p style="margin-top:20px;">
+      <a class="btn" href="index.html">Back to home</a>
+    </p>
+  </main>
+
+  <footer class="site-footer" style="margin-top:40px;">
+    <p>© <span id="year1"></span> Your Name</p>
+  </footer>
+
+  <script>
+    document.getElementById('year1').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
