@@ -6,6 +6,8 @@ html,body {
   background: #05060a;
   color: #e9eef8;
   scroll-behavior:smooth;
+  scroll-padding-top: 80px; /* Prevents fixed header from covering section titles */
+  overflow-x: hidden; /* Prevents horizontal scroll on mobile */
 }
 
 /* ===== BACKGROUND VIDEO (FORCED SAFE STACK) ===== */
@@ -84,7 +86,7 @@ html,body {
 @media (max-width:780px){
   .hamburger{ display:flex; }
   .nav-menu{
-    position:absolute; top:64px; left:0; right:0;
+    position:absolute; top:100%; left:0; right:0;
     flex-direction:column; gap:0;
     background: rgba(0,0,0,0.75);
     padding:0.7rem 1rem; display:none; backdrop-filter:blur(10px);
@@ -160,16 +162,45 @@ html,body {
 ============================================================ */
 .projects-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
   gap:1.4rem; margin-top:1.5rem;
 }
 .project-card{
+  position: relative;
   background: rgba(255,255,255,0.04); border-radius:12px; overflow:hidden;
   display:flex; flex-direction:column; box-shadow:0 8px 25px rgba(0,0,0,0.45);
 }
-.project-thumb{ height:170px; background: rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; }
+.project-thumb{ width:100%; aspect-ratio:16/9; background: rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+/* Modifier for Mobile App Screenshots (Portrait) */
+.project-thumb.mobile { height: 450px; }
+
 .placeholder-img{ width:100%; height:100%; color:#fff; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); font-weight:600; }
+/* Ensure future images fit perfectly */
+.project-thumb img { width:100%; height:100%; object-fit:contain; display:block; }
 .project-body{ padding:1.1rem; }
+
+/* Project Status Badges */
+.project-body h3 { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.status-badge { font-size: 0.7rem; padding: 0.25rem 0.6rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; }
+
+.status-live { background: #16A34A; color: white; }
+.status-deployed { background: #0D9488; color: white; }
+.status-dev { background: #2563EB; color: white; }
+.status-proto { background: #4F46E5; color: white; }
+.status-completed { background: #10B981; color: white; }
+.status-hold { background: #EAB308; color: black; }
+.status-abandoned { background: #DC2626; color: white; }
+.status-archived { background: #6B7280; color: white; }
+.status-concept { background: #9333EA; color: white; }
+
+/* Collaboration Tags */
+.collab-tag { position: absolute; top: 12px; left: 12px; font-size: 0.65rem; padding: 0.25rem 0.6rem; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,0.25); pointer-events: none; }
+.collab-solo { background: #334155; color: white; }
+.collab-team { background: #7C3AED; color: white; }
+.collab-collab { background: #4F46E5; color: white; }
+.collab-opensource { background: #475569; color: white; }
+.collab-client { background: #F59E0B; color: black; }
+
 .tags{ font-size:0.85rem; color:#9bb8ff; margin-bottom:0.4rem; }
 .desc{ color:#d0defa; margin-bottom:0.8rem; }
 
@@ -250,3 +281,31 @@ a,button{ -webkit-tap-highlight-color: transparent; outline-offset:3px; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ============================================================
+   PRELOADER & SCROLL TOP
+============================================================ */
+#preloader {
+  position: fixed; inset: 0; background: #05060a; z-index: 9999;
+  display: flex; justify-content: center; align-items: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.spinner {
+  width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1);
+  border-top-color: #dce8ff; border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#scrollTopBtn {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 45px; height: 45px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.2); color: #fff;
+  font-size: 1.2rem; cursor: pointer; z-index: 100;
+  opacity: 0; pointer-events: none; transform: translateY(10px);
+  transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+}
+#scrollTopBtn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+#scrollTopBtn:hover { background: rgba(255,255,255,0.25); }

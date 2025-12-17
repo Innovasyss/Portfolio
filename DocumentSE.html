@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Document Q&A - Project Details</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader"><div class="spinner"></div></div>
+
+  <header class="site-header" style="position:static;backdrop-filter:none;">
+    <nav class="navbar" style="max-width:1100px;margin:0 auto;">
+      <a class="brand" href="index.html#apps">← Back to Apps</a>
+    </nav>
+  </header>
+
+  <main style="max-width:900px;margin:60px auto;padding:1rem;">
+    <h1>Document Q&A Search Engine</h1>
+    <p style="color:#d0defa; margin-bottom:30px; line-height:1.6;">
+      A semantic search system leveraging vector embeddings to understand query intent and retrieve precise answers from large document sets.
+    </p>
+
+    <!-- Image Placeholder -->
+    <div style="width:100%; height:250px; background:linear-gradient(135deg, #1e293b, #0f172a); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#94a3b8; margin-bottom:40px; border: 1px dashed #475569; text-align:center; padding:20px;">
+      [Interface Preview Placeholder]<br>
+      <span style="font-size:0.9rem; opacity:0.7;">(Visuals coming soon)</span>
+    </div>
+
+    <section style="margin-bottom:40px;">
+      <h2>Project Overview</h2>
+      <p style="line-height:1.6;">
+        This project demonstrates the implementation of a Retrieval-Augmented Generation (RAG) system. Unlike traditional keyword search, it uses vector embeddings to perform semantic search, allowing users to find relevant information based on meaning rather than exact text matches.
+      </p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2>Key Features</h2>
+      <ul style="margin-left:20px; line-height:1.6; color:#d0defa;">
+        <li><strong>Semantic Search:</strong> Uses high-dimensional vector embeddings to match queries with relevant document chunks.</li>
+        <li><strong>Document Ingestion:</strong> Pipeline to preprocess, clean, and chunk text from various file formats.</li>
+        <li><strong>Ranking & Retrieval:</strong> Efficient similarity search using FAISS/Annoy/Qdrant.</li>
+        <li><strong>Q&A Capability:</strong> Generates context-aware answers based on retrieved content.</li>
+      </ul>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2>Technical Stack</h2>
+      <p style="line-height:1.6;">
+        <strong>Language:</strong> Python<br>
+        <strong>Vector DB:</strong> FAISS / Annoy / Qdrant<br>
+        <strong>Embeddings:</strong> OpenAI / HuggingFace Open Models<br>
+        <strong>Web UI:</strong> Streamlit / Flask
+      </p>
+    </section>
+
+    <section style="margin-bottom:40px;">
+      <h2>Why It Matters</h2>
+      <p style="line-height:1.6;">
+        This project highlights the ability to build modern information retrieval systems that power enterprise search and knowledge management tools. It showcases skills in NLP, vector databases, and full-stack integration.
+      </p>
+    </section>
+
+    <p style="margin-top:40px;">
+      <a class="btn" href="index.html#apps">Back to Home</a>
+    </p>
+  </main>
+
+  <!-- Scroll to Top Button -->
+  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+  <footer class="site-footer" style="margin-top:40px;">
+    <p>© <span id="year"></span> Bhavesh Bansod</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Preloader & Scroll Logic
+    const preloader = document.getElementById('preloader');
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('load', () => preloader.classList.add('hidden'));
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) scrollTopBtn.classList.add('show');
+      else scrollTopBtn.classList.remove('show');
+    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Smooth Transition
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', e => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('mailto:') && link.target !== '_blank') {
+          e.preventDefault();
+          preloader.classList.remove('hidden');
+          setTimeout(() => { window.location.href = href; }, 400);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
