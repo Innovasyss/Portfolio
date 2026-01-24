@@ -10,6 +10,10 @@ html,body {
   overflow-x: hidden; /* Prevents horizontal scroll on mobile */
 }
 
+body {
+  background: transparent;
+}
+
 /* ===== BACKGROUND VIDEO (FORCED SAFE STACK) ===== */
 .bg-video{
   position: fixed;
@@ -215,18 +219,6 @@ html,body {
    FOOTER
 ============================================================ */
 .site-footer{ padding:2.5rem 1rem; text-align:center; color:#d0defa; opacity:0.8; }
-
-/* ============================================================
-   MODAL
-============================================================ */
-.modal{
-  position:fixed; inset:0; display:grid; place-items:center;
-  background: rgba(0,0,0,0.55); backdrop-filter: blur(6px);
-  opacity:0; pointer-events:none; transition:0.25s ease; z-index:999;
-}
-.modal.open{ opacity:1; pointer-events:auto; }
-.modal-content{ background: rgba(255,255,255,0.07); padding:1.7rem 1.4rem; border-radius:12px; box-shadow:0 8px 28px rgba(0,0,0,0.55); width:min(400px,90%); text-align:center; }
-.modal-actions{ display:flex; justify-content:center; gap:0.8rem; margin-top:1.2rem; }
 
 /* ============================================================
    RESPONSIVE

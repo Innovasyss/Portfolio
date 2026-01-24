@@ -11,21 +11,10 @@
   <div id="preloader"><div class="spinner"></div></div>
 
   <!-- Background video (fixed, full-screen) -->
-  <video id="bgVideo" class="bg-video" loop muted playsinline>
-    <source src="/Portfolio/video/galaxy.mp4" type="video/mp4" />
+  <video id="bgVideo" class="bg-video" autoplay loop muted playsinline>
+    <source src="video/galaxy.mp4" type="video/mp4" />
     Your browser does not support the background video.
   </video>
-
-  <!-- First-visit popup -->
-  <div id="bgChoiceModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
-    <div class="modal-content">
-      <h2 id="modalTitle">Play animated background?</h2>
-      <div class="modal-actions">
-        <button id="bgYes" class="btn">Yes</button>
-        <button id="bgNo" class="btn btn-outline">No</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Navbar -->
   <header class="site-header">
@@ -252,10 +241,6 @@
   <!-- Minimal JS inlined as requested -->
   <script>
     // Elements
-    const bgVideo = document.getElementById('bgVideo');
-    const modal = document.getElementById('bgChoiceModal');
-    const btnYes = document.getElementById('bgYes');
-    const btnNo = document.getElementById('bgNo');
     const navMenu = document.getElementById('navMenu');
     const hamburger = document.getElementById('hamburger');
     const preloader = document.getElementById('preloader');
@@ -273,44 +258,6 @@
       });
     }
 
-    // Utility: show/hide modal
-    function showModal() {
-      modal.setAttribute('aria-hidden', 'false');
-      modal.classList.add('open');
-    }
-    function hideModal() {
-      modal.setAttribute('aria-hidden', 'true');
-      modal.classList.remove('open');
-    }
-
-    // Load saved choice or prompt
-    const saved = localStorage.getItem('bgChoice'); // "yes" / "no" / null
-    if (saved === 'yes') {
-      // play background (ensure muted)
-      bgVideo.muted = true;
-      bgVideo.play().catch(() => { /* autoplay prevented */ });
-    } else if (saved === 'no') {
-      bgVideo.pause();
-    } else {
-      // first visit -> show modal
-      // Wait a tick to ensure modal shows after page renders
-      setTimeout(showModal, 250);
-    }
-
-    // Modal button handlers
-    btnYes.addEventListener('click', () => {
-      localStorage.setItem('bgChoice', 'yes');
-      hideModal();
-      bgVideo.muted = true;
-      bgVideo.play().catch(() => { /* autoplay prevented */ });
-    });
-
-    btnNo.addEventListener('click', () => {
-      localStorage.setItem('bgChoice', 'no');
-      hideModal();
-      bgVideo.pause();
-    });
-
     // Hamburger toggle
     hamburger.addEventListener('click', () => {
       const expanded = hamburger.getAttribute('aria-expanded') === 'true';
@@ -326,18 +273,6 @@
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
-    });
-
-    // Accessibility: close modal with Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) {
-        hideModal();
-        // If no saved choice, default to no
-        if (!localStorage.getItem('bgChoice')) {
-          localStorage.setItem('bgChoice', 'no');
-          bgVideo.pause();
-        }
-      }
     });
 
     // Preloader & Smooth Page Transition
