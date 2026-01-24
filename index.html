@@ -244,6 +244,9 @@
 
   <footer class="site-footer">
     <p>© <span id="year"></span> Bhavesh Bansod — Built with Passion.</p>
+    <p style="font-size:0.95em; color:#b0b8c9;">
+      Last updated: <span id="lastUpdated"></span>
+    </p>
   </footer>
 
   <!-- Minimal JS inlined as requested -->
@@ -260,6 +263,15 @@
     const yearEl = document.getElementById('year');
 
     yearEl.textContent = new Date().getFullYear();
+
+    // Add this for last updated date
+    const lastUpdatedEl = document.getElementById('lastUpdated');
+    if (lastUpdatedEl) {
+      const updated = new Date(document.lastModified);
+      lastUpdatedEl.textContent = updated.toLocaleDateString(undefined, {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
 
     // Utility: show/hide modal
     function showModal() {
